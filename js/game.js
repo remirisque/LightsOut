@@ -1,6 +1,6 @@
 var c = document.getElementById("lightsOutCanvas");
 var ctx = c.getContext("2d");
-c.addEventListener("click", clickHandler);
+c.addEventListener("touchstart", clickHandler);
 ctx.fillStyle = "#ff0000";
 ctx.strokeStyle = "#ffffff";
 
