@@ -1,6 +1,6 @@
 var c = document.getElementById("lightsOutCanvas");
 var ctx = c.getContext("2d");
-ctx.addEventListener(clickHandler);
+c.addEventListener("click", clickHandler);
 ctx.fillStyle = "#ff0000";
 ctx.strokeStyle = "#ffffff";
 
@@ -22,7 +22,7 @@ function Game() {
         for (var y = 0; y < this.height; y++) {
             var row = [];
             for (var x = 0; x < this.width; x++) {
-                if (Math.random() < .2) {
+                if (Math.random() < .4) {
                     row.push(true);
                 } else {
                     row.push(false);
