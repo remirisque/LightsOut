@@ -2,6 +2,7 @@ var c = document.getElementById("lightsOutCanvas");
 var ctx = c.getContext("2d");
 c.addEventListener("click", clickHandler);
 ctx.fillStyle = "#ff0000";
+ctx.strokeStyle = "#ffffff";
 
 function cell(x, y) { //yay for half-assed tuple-ish things
     this.x = x;
@@ -13,6 +14,8 @@ function Game() {
     this.width = 5;
     this.height = 5;
     this.cellSize = 64;
+      
+    this.moveCount = 0;
       
     //  seed board with random on/off values
     this.init = function () {
@@ -35,9 +38,10 @@ function Game() {
 function clickHandler (event) {
     x = Math.floor((event.clientX - c.offsetLeft) / game.cellSize);
     y = Math.floor((event.clientY - c.offsetTop) / game.cellSize);
+    game.moveCount++;
     game.flipCells(game.getNeighbors(x, y));
     game.drawBoard();
-    game.checkWinCondition;
+    game.checkWinCondition();
 }
 
 Game.prototype.drawBoard = function () {
@@ -48,7 +52,8 @@ Game.prototype.drawBoard = function () {
             } else {
             ctx.fillStyle = "#000000";
             }
-            ctx.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize); 
+            ctx.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
+            ctx.strokeRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize); 
         }
     }
 }
@@ -82,7 +87,8 @@ Game.prototype.checkWinCondition = function () {
              }
         }
     }
-    alert("A winnar is you!");
+    alert("A winnar is you, in " + this.moveCount + " moves.");
     c.removeEventListener("click", clickHandler);
 }
+
 var game = new Game();
