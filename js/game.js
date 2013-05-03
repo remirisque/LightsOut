@@ -13,7 +13,7 @@ function Game() {
     this.board = [];
     this.width = 5;
     this.height = 5;
-    this.cellSize = 64;
+    this.cellSize = 120;
       
     this.moveCount = 0;
       
